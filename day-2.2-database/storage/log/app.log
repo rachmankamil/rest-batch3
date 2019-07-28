@@ -1,0 +1,1 @@
+[2019-07-28 14:37:15,168] {/Users/rachmankamil/Python/rest-training-batch-3/day-2.2-database/blueprints/__init__.py:27} WARNING - REQUEST_LOG	{"request": {"name": "Kamil", "age": 26, "sex": "Male"}, "response": {"id": 1, "name": "Kamil", "age": 26, "sex": "Male"}}
