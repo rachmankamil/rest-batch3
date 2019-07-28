@@ -3,6 +3,9 @@ from flask_restful import Api
 from blueprints import app
 import logging
 from logging.handlers import RotatingFileHandler
+from werkzeug.contrib.cache import SimpleCache
+
+cache = SimpleCache()
 
 ####################################
 # Flask-RESTFul define custom error

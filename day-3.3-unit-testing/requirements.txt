@@ -5,3 +5,4 @@ pymysql
 flask-migrate
 flask-jwt-extended
 requests
+pytest
