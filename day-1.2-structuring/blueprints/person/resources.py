@@ -28,7 +28,7 @@ class PersonResource(Resource):
         self.person.name = data['name']
         self.person.age = data['age']
         self.person.sex = data['sex']
-        return json.dumps(self.person.__dict__), 200, {'Content-Type': 'application/json'}
+        return self.person.__dict__, 200, {'Content-Type': 'application/json'}
 
     def put(self):
         return "This is PUT", 200
@@ -39,5 +39,4 @@ class PersonResource(Resource):
     def patch(self):
         return "Not yet implement", 501
 
-
-api.add_resource(PersonResource, '/person')
+api.add_resource(PersonResource, '')
