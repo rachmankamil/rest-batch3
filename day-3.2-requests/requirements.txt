@@ -1,0 +1,7 @@
+flask
+flask-restful
+flask-sqlalchemy
+pymysql
+flask-migrate
+flask-jwt-extended
+requests
