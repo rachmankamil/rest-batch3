@@ -36,7 +36,7 @@ class PersonResource(Resource):
         data = parser.parse_args()
 
         person = Person()
-        person.id = len(self.persons.get_list()) + 1
+        person.id = self.persons.persons[-1]['id'] + 1
         person.name = data['name']
         person.age = data['age']
         person.sex = data['sex']

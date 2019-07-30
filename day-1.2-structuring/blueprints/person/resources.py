@@ -1,8 +1,7 @@
-import json
 from flask import Blueprint
 from flask_restful import Api, reqparse, Resource
 
-from . import *
+from . import Person
 
 bp_person = Blueprint('person', __name__)
 api = Api(bp_person)

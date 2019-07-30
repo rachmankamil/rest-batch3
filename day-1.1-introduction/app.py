@@ -26,7 +26,7 @@ def index():
 @app.route('/person', methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH'])
 def person_controller():
     person = Person()
-    if request.method in 'POST':
+    if request.method == 'POST':
         data = request.get_json()
         person.name = data['name']
         person.age = data['age']

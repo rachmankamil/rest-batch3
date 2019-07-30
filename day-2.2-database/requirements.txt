@@ -3,3 +3,4 @@ flask-restful
 flask-sqlalchemy
 pymysql
 flask-migrate
+flask-script

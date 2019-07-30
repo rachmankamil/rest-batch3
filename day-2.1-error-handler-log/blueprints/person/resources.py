@@ -26,6 +26,7 @@ class PersonResource(Resource):
             if result is not None:
                 return result, 200, {'Content-Type': 'application/json'}
             else:
+                app.logg
                 return {'status': 'NOT_FOUND', 'message': 'Person not found'}, 404, {'Content-Type': 'application/json'}
 
     def post(self):

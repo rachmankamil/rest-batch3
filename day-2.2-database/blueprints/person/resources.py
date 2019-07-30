@@ -1,6 +1,5 @@
-import json
 from flask import Blueprint
-from flask_restful import Api, reqparse, Resource, marshal
+from flask_restful import Api, reqparse, Resource, marshal, inputs
 from sqlalchemy import desc
 from .model import  Persons
 
@@ -80,6 +79,9 @@ class PersonList(Resource):
         parser.add_argument('sex', location='args', help='invalid status', choices=('male', 'female'))
         parser.add_argument('orderby', location='args', help='invalid orderby value', choices=('age', 'sex'))
         parser.add_argument('sort', location='args', help='invalid sort value', choices=('desc', 'asc'))
+        parser.add_argument('sort',
+                            type=inputs.boolean, 
+                            location='args')
         args = parser.parse_args()
 
         offset = (args['p'] * args['rp']) - args['rp']
