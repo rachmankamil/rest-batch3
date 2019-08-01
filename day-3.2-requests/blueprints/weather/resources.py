@@ -16,10 +16,13 @@ class PublicGetCurrentWeather(Resource):
         parser.add_argument('ip', location='args', default=None)
         args = parser.parse_args()
 
+        ## step - 1 - check lon lat from ip
         rq = requests.get(self.wio_host + '/ip', params={'ip': args['ip'], 'key': self.wio_apikey})
         geo = rq.json()
         lat = geo['latitude']
         lon = geo['longitude']
+
+        ## step - 2 - get current weather from lat lon
         rq = requests.get(self.wio_host + '/current', params={'lat': lat, 'lon': lon, 'key': self.wio_apikey})
         current = rq.json()
 

@@ -34,7 +34,6 @@ def after_request(response):
 # Import blueprints
 ####################################
 
-
 from blueprints.person.resources import bp_person
 app.register_blueprint(bp_person, url_prefix='/person')
 

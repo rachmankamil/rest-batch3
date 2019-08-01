@@ -5,7 +5,7 @@ from flask_jwt_extended import jwt_required
 from sqlalchemy import desc
 
 from .model import  Persons
-from blueprints import db, app
+from blueprints import db, app, internal_required
 
 bp_person = Blueprint('person', __name__)
 api = Api(bp_person)
@@ -28,6 +28,7 @@ class PersonResource(Resource):
         return {'status': 'NOT_FOUND'}, 404
 
     @jwt_required
+    @internal_required
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('name', location='json', required=True)
@@ -94,6 +95,9 @@ class PersonList(Resource):
 
         if args['sex'] is not None:
             qry = qry.filter_by(sex=args['sex'])
+
+        claims = jwt_get_claims()
+        qry = qry.filter_by(client_id=claims['client_id'])
 
         if args['orderby'] is not None:
             if args['orderby'] == 'age':

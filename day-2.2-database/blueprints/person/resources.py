@@ -26,12 +26,12 @@ class PersonResource(Resource):
 
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('name', location='json', required=True)
+        parser.add_argument('client_name', location='json', required=True)
         parser.add_argument('age', location='json', type=int, required=True)
         parser.add_argument('sex', location='json')
         args = parser.parse_args()
 
-        person = Persons(args['name'], args['age'], args['sex'])
+        person = Persons(args['client_name'], args['age'], args['sex'])
         db.session.add(person)
         db.session.commit()
 

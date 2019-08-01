@@ -19,16 +19,18 @@ def after_request(response):
         requestData = request.get_json()
     except Exception as e:
         requestData = request.args.to_dict()
-    
-    app.logger.warning("REQUEST_LOG\t%s",
-        json.dumps({
-            'method': request.method,
-            'code': response.status,
-            'uri': request.full_path,
-            'request': requestData,
-            'response': json.loads(response.data.decode('utf-8'))
-        })
-    )
+    if response.status_code == 200:
+        app.logger.warning("REQUEST_LOG\t%s",
+            json.dumps({
+                'method': request.method,
+                'code': response.status,
+                'uri': request.full_path,
+                'request': requestData,
+                'response': json.loads(response.data.decode('utf-8'))
+            })
+        )
+    else:
+        app.logger.error("")
     # try:
     #     if request.method == 'GET':
     #         app.logger.warning("REQUEST_LOG\t%s", 

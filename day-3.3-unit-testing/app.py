@@ -1,6 +1,6 @@
 # app.py
 from flask_restful import Api
-from blueprints import app
+from blueprints import app, jwt
 import logging
 from logging.handlers import RotatingFileHandler
 from werkzeug.contrib.cache import SimpleCache

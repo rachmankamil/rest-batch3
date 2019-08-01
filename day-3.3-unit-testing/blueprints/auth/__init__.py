@@ -9,11 +9,11 @@ api = Api(bp_auth)
 ### Resources
 class CreateTokenResource(Resource):
 
-    def post(self):
+    def get(self):
         ## Create token
         parser = reqparse.RequestParser()
-        parser.add_argument('client_key', location='json', required=True)
-        parser.add_argument('client_secret', location='json', required=True)
+        parser.add_argument('client_key', location='args', required=True)
+        parser.add_argument('client_secret', location='args', required=True)
         args = parser.parse_args()
 
         if args['client_key'] == 'altarest' and args['client_secret'] == '1OopwAPk3Q2D':
@@ -24,7 +24,7 @@ class CreateTokenResource(Resource):
         return {'token': token}, 200
 
     @jwt_required
-    def get(self):
+    def post(self):
         claims = get_jwt_claims()
         return {'claims': claims}, 200
 

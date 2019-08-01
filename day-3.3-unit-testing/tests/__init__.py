@@ -1,9 +1,10 @@
 # tests/__init__.py
 
 import pytest, json, logging
-from flask import Flask, request, json
+from flask import Flask, request
 
-from app import app, cache
+from blueprints import app
+from app import cache
 
 def call_client(request):
     client = app.test_client()
@@ -24,9 +25,9 @@ def create_token():
 
         ## do request
         req = call_client(request)
-        res = req.post('/token', 
-                        data=json.dumps(data),
-                        content_type='application/json')
+        res = req.get('/token', 
+                        query_string=data
+        )
         
         ## store response
         res_json = json.loads(res.data)

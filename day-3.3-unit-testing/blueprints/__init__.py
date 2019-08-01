@@ -8,6 +8,7 @@ from flask_jwt_extended import JWTManager
 app = Flask(__name__)
 
 app.config['APP_DEBUG'] = True
+app.config['PROPOGATE_EXCEPTIONS'] = True
 
 ####################################
 # JWT
