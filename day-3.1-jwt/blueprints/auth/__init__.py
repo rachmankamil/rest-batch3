@@ -18,7 +18,7 @@ class CreateTokenResource(Resource):
         parser.add_argument('client_secret', location='args', required=True)
         args = parser.parse_args()
 
-        qry = Clients.query.filter_by(client_id=args['client_key']).filter_by(client_secret=args['client_secret'])
+        qry = Clients.query.filter_by(client_key=args['client_key']).filter_by(client_secret=args['client_secret'])
 
         clientData = qry.first()
         if clientData is not None :
