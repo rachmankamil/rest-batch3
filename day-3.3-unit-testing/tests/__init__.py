@@ -3,8 +3,19 @@
 import pytest, json, logging
 from flask import Flask, request
 
-from blueprints import app
+from blueprints import app, db
+from blueprints.person.model import Persons
 from app import cache
+
+def reset_db():
+    db.drop_all()
+    db.create_all()
+
+    person = Persons("username","password",True)
+    db.session.add(person)
+    db.session.commit()
+    person = Persons("username2","password2",False)
+    db.session.commit()
 
 def call_client(request):
     client = app.test_client()
@@ -14,15 +25,21 @@ def call_client(request):
 def client(request):
     return call_client(request)
 
-def create_token():
-    token = cache.get('test-token')
-    if token is None:
-        ## prepare request input
+def create_token(isinternal=False):
+    if isinternal:
+        cachename = 'test-internal-token'
         data = {
-            'client_key': 'altarest',
-            'client_secret': '1OopwAPk3Q2D'
-        }
-
+                'client_key': 'internal',
+                'client_secret': 'thisisinternal'
+            }
+    else:
+        cachename = 'test-token'
+        data = {
+                'client_key': 'altarest',
+                'client_secret': '1OopwAPk3Q2D'
+            }
+    token = cache.get(cachename)
+    if token is None:
         ## do request
         req = call_client(request)
         res = req.get('/token', 
@@ -38,7 +55,7 @@ def create_token():
         assert res.status_code == 200
 
         ## save token into cache
-        cache.set('test-token', res_json['token'], timeout=60)
+        cache.set(cachename, res_json['token'], timeout=60)
 
         ## return, because it usefull for other test
         return res_json['token']

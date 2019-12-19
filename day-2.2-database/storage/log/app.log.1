@@ -1,107 +1,107 @@
-[2019-07-30 17:12:05,330] {/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/flask/app.py:1891} ERROR - Exception on /person [POST]
+[2019-12-17 19:19:22,347] {/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/app.py:1891} ERROR - Exception on /person [POST]
 Traceback (most recent call last):
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
     cursor, statement, parameters, context
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
     cursor.execute(statement, parameters)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
     result = self._query(query)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
     conn.query(q)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
     result.read()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
     first_packet = self.connection._read_packet()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
     packet.check_error()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
     err.raise_mysql_exception(self._data)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
     raise errorclass(errno, errval)
-pymysql.err.IntegrityError: (1062, "Duplicate entry 'Kamil' for key 'name'")
+pymysql.err.IntegrityError: (1062, "Duplicate entry 'Zahra' for key 'name'")
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
     rv = self.dispatch_request()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/flask_restful/__init__.py", line 458, in wrapper
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask_restful/__init__.py", line 458, in wrapper
     resp = resource(*args, **kwargs)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/flask/views.py", line 89, in view
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/views.py", line 89, in view
     return self.dispatch_request(*args, **kwargs)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/flask_restful/__init__.py", line 573, in dispatch_request
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask_restful/__init__.py", line 573, in dispatch_request
     resp = meth(*args, **kwargs)
-  File "/Users/rachmankamil/Python/rest-training-batch-3/day-2.2-database/blueprints/person/resources.py", line 37, in post
+  File "/Users/rachmankamil/Project/rest-batch3/day-2.2-database/blueprints/person/resources.py", line 36, in post
     db.session.commit()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
     return getattr(self.registry(), name)(*args, **kwargs)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1027, in commit
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
     self.transaction.commit()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 494, in commit
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 503, in commit
     self._prepare_impl()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 473, in _prepare_impl
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 482, in _prepare_impl
     self.session.flush()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2459, in flush
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2479, in flush
     self._flush(objects)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2597, in _flush
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2617, in _flush
     transaction.rollback(_capture_exception=True)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
     compat.reraise(exc_type, exc_value, exc_tb)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
     raise value
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2557, in _flush
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 2577, in _flush
     flush_context.execute()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
     rec.execute(self)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
     uow,
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
     insert,
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1138, in _emit_insert_statements
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/orm/persistence.py", line 1137, in _emit_insert_statements
     statement, params
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 988, in execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 982, in execute
     return meth(self, multiparams, params)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
     return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1107, in _execute_clauseelement
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
     distilled_params,
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1248, in _execute_context
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
     e, statement, parameters, cursor, context
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1466, in _handle_dbapi_exception
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
     util.raise_from_cause(sqlalchemy_exception, exc_info)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
     reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
     raise value.with_traceback(tb)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1244, in _execute_context
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
     cursor, statement, parameters, context
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 552, in do_execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
     cursor.execute(statement, parameters)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
     result = self._query(query)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
     conn.query(q)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 517, in query
     self._affected_rows = self._read_query_result(unbuffered=unbuffered)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 732, in _read_query_result
     result.read()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 1075, in read
     first_packet = self.connection._read_packet()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/connections.py", line 684, in _read_packet
     packet.check_error()
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/protocol.py", line 220, in check_error
     err.raise_mysql_exception(self._data)
-  File "/Users/rachmankamil/Python/.virtualenvs/rest-ata3/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/pymysql/err.py", line 109, in raise_mysql_exception
     raise errorclass(errno, errval)
-sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'Kamil' for key 'name'")
-[SQL: INSERT INTO person (name, age, sex) VALUES (%(name)s, %(age)s, %(sex)s)]
-[parameters: {'name': 'Kamil', 'age': 26, 'sex': 'Male'}]
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'Zahra' for key 'name'")
+[SQL: INSERT INTO person (name, age, sex, updated_at, deleted) VALUES (%(name)s, %(age)s, %(sex)s, %(updated_at)s, %(deleted)s)]
+[parameters: {'name': 'Zahra', 'age': 23, 'sex': 'female', 'updated_at': None, 'deleted': 0}]
 (Background on this error at: http://sqlalche.me/e/gkpj)
-[2019-07-30 17:12:05,335] {/Users/rachmankamil/Python/rest-training-batch-3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"name": "Kamil", "age": 26, "sex": "Male"}, "response": {"message": "Internal Server Error"}}
-[2019-07-30 17:12:31,971] {/Users/rachmankamil/Python/rest-training-batch-3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"name": "Kamil1", "age": 26, "sex": "Male"}, "response": {"id": 4, "name": "Kamil1", "age": 26, "sex": "Male"}}
-[2019-07-30 17:12:34,371] {/Users/rachmankamil/Python/rest-training-batch-3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"name": "Kamil2", "age": 26, "sex": "Male"}, "response": {"id": 5, "name": "Kamil2", "age": 26, "sex": "Male"}}
-[2019-07-30 17:12:38,209] {/Users/rachmankamil/Python/rest-training-batch-3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"name": "Kamil3", "age": 26, "sex": "Male"}, "response": {"id": 6, "name": "Kamil3", "age": 26, "sex": "Male"}}
+[2019-12-17 19:19:22,364] {/Users/rachmankamil/Project/rest-batch3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"client_name": "Zahra", "age": 23, "sex": "female"}, "response": {"message": "Internal Server Error"}}
+[2019-12-17 19:19:36,455] {/Users/rachmankamil/Project/rest-batch3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"client_name": "Wildan", "age": 23, "sex": "female"}, "response": {"id": 7, "name": "Wildan", "age": 23, "sex": "female"}}
+[2019-12-17 19:19:45,409] {/Users/rachmankamil/Project/rest-batch3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"name": "Rachman Kamil"}, "response": {"message": {"age": "Missing required parameter in the JSON body"}}}
+[2019-12-17 19:20:10,202] {/Users/rachmankamil/Project/rest-batch3/day-2.2-database/blueprints/__init__.py:30} WARNING - REQUEST_LOG	{"request": {"name": "Rachman Kamil", "age": 25}, "response": {"id": 7, "name": "Rachman Kamil", "age": 25, "sex": ""}}

@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask_restful import Api, reqparse, Resource, marshal, inputs
 from sqlalchemy import desc
 from .model import  Persons
+import datetime
 
 from blueprints import db, app
 
@@ -50,9 +51,10 @@ class PersonResource(Resource):
         if qry is None:
             return {'status': 'NOT_FOUND'}, 404
 
-        qry.name = args['name']
+        if args['name'] is not None: qry.name = args['name']
         qry.age = args['age']
         qry.sex = args['sex']
+        qry.updated_at = datetime.datetime.now()
         db.session.commit()
 
         return marshal(qry, Persons.response_fields), 200
@@ -61,9 +63,13 @@ class PersonResource(Resource):
         qry = Persons.query.get(id)
         if qry is None:
             return {'status': 'NOT_FOUND'}, 404
-
+        ## hard delete
         db.session.delete(qry)
         db.session.commit()
+
+        #soft delete
+        # qry.deleted = True
+        # db.session.commit()
 
         return {'status': 'DELETED'}, 200
 
@@ -79,14 +85,15 @@ class PersonList(Resource):
         parser.add_argument('sex', location='args', help='invalid status', choices=('male', 'female'))
         parser.add_argument('orderby', location='args', help='invalid orderby value', choices=('age', 'sex'))
         parser.add_argument('sort', location='args', help='invalid sort value', choices=('desc', 'asc'))
-        parser.add_argument('sort',
-                            type=inputs.boolean, 
-                            location='args')
+        # parser.add_argument('sort',
+        #                     type=inputs.boolean, 
+        #                     location='args')
         args = parser.parse_args()
 
         offset = (args['p'] * args['rp']) - args['rp']
 
         qry = Persons.query
+        # qry.filter(Persons.name.like("%"+args['name']+"%"))
 
         if args['sex'] is not None:
             qry = qry.filter_by(sex=args['sex'])

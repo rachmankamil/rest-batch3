@@ -3,7 +3,7 @@ from flask_restful import Api, reqparse, Resource
 
 from . import Person
 
-bp_person = Blueprint('person', __name__)
+bp_person = Blueprint('personasd', __name__)
 api = Api(bp_person)
 
 ####################################

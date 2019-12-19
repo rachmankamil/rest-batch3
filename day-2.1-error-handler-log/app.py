@@ -20,8 +20,9 @@ def after_request(response):
     except Exception as e:
         requestData = request.args.to_dict()
     if response.status_code == 200:
-        app.logger.warning("REQUEST_LOG\t%s",
+        app.logger.info("REQUEST_LOG\t%s",
             json.dumps({
+                'status_code': response.status_code,
                 'method': request.method,
                 'code': response.status,
                 'uri': request.full_path,
@@ -30,7 +31,16 @@ def after_request(response):
             })
         )
     else:
-        app.logger.error("")
+        app.logger.error("REQUEST_LOG\t%s",
+            json.dumps({
+                'status_code': response.status_code,
+                'method': request.method,
+                'code': response.status,
+                'uri': request.full_path,
+                'request': requestData,
+                'response': json.loads(response.data.decode('utf-8'))
+            })
+        )
     # try:
     #     if request.method == 'GET':
     #         app.logger.warning("REQUEST_LOG\t%s", 
@@ -69,9 +79,10 @@ app.register_blueprint(bp_person, url_prefix='/person')
 if __name__ == '__main__':
 
     ## define log format and create a rotating log with max size of 10MB and max backup up to 10 files
+    logging.getLogger().setLevel('INFO')
     formatter = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
     log_handler = RotatingFileHandler("%s/%s" % (app.root_path, 'storage/log/app.log'), maxBytes=10000, backupCount=10)
-    log_handler.setLevel(logging.INFO)
+    # log_handler.setLevel('NOTSET')
     log_handler.setFormatter(formatter)
     app.logger.addHandler(log_handler)
 

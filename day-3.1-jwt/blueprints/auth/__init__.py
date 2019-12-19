@@ -18,21 +18,19 @@ class CreateTokenResource(Resource):
         parser.add_argument('client_secret', location='args', required=True)
         args = parser.parse_args()
 
-        qry = Clients.query.filter_by(client_key=args['client_key']).filter_by(client_secret=args['client_secret'])
-
-        clientData = qry.first()
-        if clientData is not None :
-            clientData = marshal(clientData, Clients.jwt_claims_fields)
-            # clientData.pop("client_secret")
-            token = create_access_token(identity=args['client_key'], user_claims=clientData)
-            return {'token': token}, 200
+        if args['client_key'] == 'internal' and args['client_secret'] == 'th1s1s1nt3n4lcl13nt':
+            token = create_access_token(identity=args['client_key'],user_claims={'isinternal':True})
         else:
-            return {'status': 'UNAUTHORIZED', 'message': 'invalid key or secret'}, 401
+            qry = Clients.query.filter_by(client_key=args['client_key']).filter_by(client_secret=args['client_secret'])
 
-        # if args['client_key'] == 'altarest' and args['client_secret'] == '1OopwAPk3Q2D':
-        #     token = create_access_token(identity=args['client_key'])
-        # else:
-        #     return {'status': 'UNAUTHORIZED', 'message': 'invalid key or secret'}, 401
+            clientData = qry.first()
+            if clientData is not None :
+                clientData = marshal(clientData, Clients.jwt_claims_fields)
+                clientData['isinternal']=False
+                token = create_access_token(identity=clientData["client_key"], user_claims=clientData)
+                return {'token': token}, 200
+            else:
+                return {'status': 'UNAUTHORIZED', 'message': 'invalid key or secret'}, 401
 
     @jwt_required
     def post(self):

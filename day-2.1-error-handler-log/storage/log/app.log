@@ -14,3 +14,24 @@
 [2019-07-30 11:10:41,588] {day-2.1-error-handler-log/app.py:29} WARNING - REQUEST_LOG	{"method": "POST", "code": "400 BAD REQUEST", "uri": "/person?", "request": {"age": 26, "sex": "Male"}, "response": {"message": {"name": "Missing required parameter in the JSON body"}}}
 [2019-07-30 11:13:13,882] {day-2.1-error-handler-log/app.py:45} WARNING - REQUEST_LOG	{"uri": "/person?", "request": {"age": 26, "sex": "Male"}, "response": {"message": {"name": "Missing required parameter in the JSON body"}}}
 [2019-07-30 11:22:09,645] {day-2.1-error-handler-log/app.py:50} ERROR - TET TOT
+[2019-12-17 10:38:51,224] {/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/app.py:1891} ERROR - Exception on /person/100 [GET]
+Traceback (most recent call last):
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask_restful/__init__.py", line 458, in wrapper
+    resp = resource(*args, **kwargs)
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask/views.py", line 89, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/Users/rachmankamil/Project/rest-batch3/rest_training/lib/python3.7/site-packages/flask_restful/__init__.py", line 573, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "/Users/rachmankamil/Project/rest-batch3/day-2.1-error-handler-log/blueprints/person/resources.py", line 29, in get
+    app.logg
+NameError: name 'app' is not defined
+[2019-12-17 10:38:51,227] {app.py:30} WARNING - REQUEST_LOG	{"status_code": 500, "method": "GET", "code": "500 INTERNAL SERVER ERROR", "uri": "/person/100?", "request": null, "response": {"message": "Internal Server Error"}}
+[2019-12-17 10:39:48,465] {app.py:30} WARNING - REQUEST_LOG	{"status_code": 400, "method": "POST", "code": "400 BAD REQUEST", "uri": "/person?", "request": null, "response": {"message": {"name": "Missing required parameter in the JSON body"}}}
+[2019-12-17 10:40:29,539] {app.py:30} WARNING - REQUEST_LOG	{"status_code": 400, "method": "POST", "code": "400 BAD REQUEST", "uri": "/person?", "request": {"nama": "Kamil", "age": 25, "sex": "male"}, "response": {"message": {"name": "Missing required parameter in the JSON body"}}}
+[2019-12-17 10:51:42,010] {app.py:41} ERROR - REQUEST_LOG	{"status_code": 400, "method": "POST", "code": "400 BAD REQUEST", "uri": "/person?", "request": {"nama": "Kamil", "age": 25, "sex": "male"}, "response": {"message": {"name": "Missing required parameter in the JSON body"}}}
+[2019-12-17 10:54:24,322] {app.py:41} ERROR - REQUEST_LOG	{"status_code": 400, "method": "POST", "code": "400 BAD REQUEST", "uri": "/person?", "request": null, "response": {"message": {"name": "Missing required parameter in the JSON body"}}}
+[2019-12-17 11:05:15,835] {app.py:30} INFO - REQUEST_LOG	{"status_code": 200, "method": "POST", "code": "200 OK", "uri": "/person?", "request": {"name": "Kamil", "age": 25, "sex": "male"}, "response": {"id": 16, "name": "Kamil", "age": 25, "sex": "male"}}

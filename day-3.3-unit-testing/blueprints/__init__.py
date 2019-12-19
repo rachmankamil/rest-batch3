@@ -1,4 +1,4 @@
-import json
+import json, os
 from datetime import timedelta
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
@@ -31,8 +31,17 @@ def add_claims_to_access_token(identity):
 # Database
 ####################################
 
+try:
+    env = os.environ.get('FLASK_ENV', 'development')
+    if env == 'testing':
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@127.0.0.1/rest_training_test'
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@127.0.0.1/rest_training'
+except Exception as e:
+    raise e
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@127.0.0.1/rest_training'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -44,12 +53,32 @@ migrate = Migrate(app, db)
 
 @app.after_request
 def after_request(response):
-    if request.method == 'GET':
-        app.logger.warning("REQUEST_LOG\t%s", json.dumps({'request': request.args.to_dict(
-        ), 'response': json.loads(response.data.decode('utf-8'))}))
+    try:
+        requestData = request.get_json()
+    except Exception as e:
+        requestData = request.args.to_dict()
+    if response.status_code == 200:
+        app.logger.info("REQUEST_LOG\t%s",
+            json.dumps({
+                'status_code': response.status_code,
+                'method': request.method,
+                'code': response.status,
+                'uri': request.full_path,
+                'request': requestData,
+                'response': json.loads(response.data.decode('utf-8'))
+            })
+        )
     else:
-        app.logger.warning("REQUEST_LOG\t%s", json.dumps(
-            {'request': request.get_json(), 'response': json.loads(response.data.decode('utf-8'))}))
+        app.logger.error("REQUEST_LOG\t%s",
+            json.dumps({
+                'status_code': response.status_code,
+                'method': request.method,
+                'code': response.status,
+                'uri': request.full_path,
+                'request': requestData,
+                'response': json.loads(response.data.decode('utf-8'))
+            })
+        )
     return response
 
 ####################################

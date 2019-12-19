@@ -7,7 +7,7 @@ from flask_script import Manager
 app = Flask(__name__)
 
 app.config['APP_DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/rest_training'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:yourpassword@0.0.0.0:3306/rest_training2'
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
