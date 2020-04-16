@@ -15,7 +15,11 @@ class PersonResource(Resource):
     person = Person()
 
     def get(self):
-        return "This is GET", 200
+        parser = reqparse.RequestParser()
+        parser.add_argument('filter', location="args")
+        data = parser.parse_args()
+
+        return data, 200
 
     def post(self):
         parser = reqparse.RequestParser()

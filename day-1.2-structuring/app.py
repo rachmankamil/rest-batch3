@@ -2,7 +2,6 @@
 
 from flask import Flask
 from flask_restful import Resource, Api
-import json
 
 app = Flask(__name__)
 ## initiate flask-restful instance

@@ -23,4 +23,4 @@ if __name__ == '__main__':
         app.logger.addHandler(log_handler)
 
         ## if you want to jsonify 500 error, you cannot. But you can set debug=False
-        app.run(debug=False, host='0.0.0.0', port=5000)
+        app.run(debug=False, host='0.0.0.0', port=5050)

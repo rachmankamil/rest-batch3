@@ -3,6 +3,8 @@ from flask_restful import Api, reqparse, Resource, marshal, inputs
 from sqlalchemy import desc
 from .model import  Persons
 
+import hashlib, uuid
+
 from blueprints import db, app
 
 bp_person = Blueprint('person', __name__)
@@ -29,9 +31,13 @@ class PersonResource(Resource):
         parser.add_argument('client_name', location='json', required=True)
         parser.add_argument('age', location='json', type=int, required=True)
         parser.add_argument('sex', location='json')
+        parser.add_argument('password', location='json')
         args = parser.parse_args()
 
-        person = Persons(args['client_name'], args['age'], args['sex'])
+        salt = uuid.uuid4().hex
+        hash_pass = hashlib.sha512(args['password'] + salt).hexdigest()
+
+        person = Persons(args['client_name'], args['age'], args['sex'], salt, hash_pass)
         db.session.add(person)
         db.session.commit()
 
@@ -79,9 +85,7 @@ class PersonList(Resource):
         parser.add_argument('sex', location='args', help='invalid status', choices=('male', 'female'))
         parser.add_argument('orderby', location='args', help='invalid orderby value', choices=('age', 'sex'))
         parser.add_argument('sort', location='args', help='invalid sort value', choices=('desc', 'asc'))
-        parser.add_argument('sort',
-                            type=inputs.boolean, 
-                            location='args')
+        parser.add_argument('status', location='args', choices=('true', 'false', 'True', 'False'))
         args = parser.parse_args()
 
         offset = (args['p'] * args['rp']) - args['rp']
@@ -90,6 +94,9 @@ class PersonList(Resource):
 
         if args['sex'] is not None:
             qry = qry.filter_by(sex=args['sex'])
+
+        if args['status'] is not None:
+            qry = qry.filter_by(status=True if args['status'].lower()=="true" else False)
 
         if args['orderby'] is not None:
             if args['orderby'] == 'age':
