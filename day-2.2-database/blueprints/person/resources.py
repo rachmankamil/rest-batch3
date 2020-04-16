@@ -35,7 +35,8 @@ class PersonResource(Resource):
         args = parser.parse_args()
 
         salt = uuid.uuid4().hex
-        hash_pass = hashlib.sha512(args['password'] + salt).hexdigest()
+        encoded = ('%s%s' % (args['password'], salt)).encode('utf-8')
+        hash_pass = hashlib.sha512(encoded).hexdigest()
 
         person = Persons(args['client_name'], args['age'], args['sex'], salt, hash_pass)
         db.session.add(person)
