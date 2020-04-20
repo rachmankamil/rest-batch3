@@ -1,11 +1,17 @@
-import json, config
+import json, config, os
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 app = Flask(__name__)
-app.config.from_object(config.DevelopmentConfig)
+flask_env = os.environ.get('FLASK_ENV', 'Production')
+if flask_env == "Production" :
+	app.config.from_object(config.ProductionConfig)
+elif flask_env == "Testing" :
+	app.config.from_object(config.TestingConfig)
+else :
+	app.config.from_object(config.DevelopmentConfig)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

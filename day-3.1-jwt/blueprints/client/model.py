@@ -8,6 +8,7 @@ class Clients(db.Model):
 	client_name = db.Column(db.String(30), nullable=False)
 	client_secret = db.Column(db.String(30), nullable=True)
 	status = db.Column(db.Boolean, nullable=False)
+	internal = db.Column(db.Boolean, default=False)
 
 	response_fields = {
 		'client_key': fields.String,

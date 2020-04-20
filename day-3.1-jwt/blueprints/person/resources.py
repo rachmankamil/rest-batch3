@@ -20,7 +20,7 @@ class PersonResource(Resource):
     def __init__(self):
         pass
 
-    @jwt_required
+    @internal_required
     def get(self, id):
         qry = Persons.query.get(id)
         if qry is not None:

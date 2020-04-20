@@ -95,6 +95,12 @@ class PersonList(Resource):
         if args['sex'] is not None:
             qry = qry.filter_by(sex=args['sex'])
 
+        claims = jwt_get_claims()
+
+        if claims['status'] == False:
+            user = User.query.filter_by(client_id=claims['client_id']).first()
+            qry = qry.filter_by(user_id=user.id)
+
         if args['orderby'] is not None:
             if args['orderby'] == 'age':
                 if args['sort'] == 'desc':
@@ -109,7 +115,12 @@ class PersonList(Resource):
 
         rows = []
         for row in qry.limit(args['rp']).offset(offset).all():
-            rows.append(marshal(row, Persons.response_fields))
+            rent = marshal(row, rent.response_fields)
+            book = Book.query.get(rent['book_id'])
+            rent['book'] = marshal(book, book.response_field)
+            user = User.query.get(rent['user_id'])
+            rent['user'] = marshal(user, UserWarning.response_field)
+            rows.append(rent)
 
         return rows, 200
 ### Routes

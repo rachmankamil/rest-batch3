@@ -1,11 +1,11 @@
 import json
-from . import app, client, cache, create_token
+from . import app, client, cache, create_token, init_database
 
 class TestPersonCrud():
 
     idPerson = 0
 
-    def test_person_insert(self, client):
+    def test_person_insert(self, client, init_database):
         token = create_token()
 
         data = {

@@ -22,12 +22,31 @@ class CreateTokenResource(Resource):
 
         clientData = qry.first()
         if clientData is not None :
-            clientData = marshal(clientData, Clients.jwt_claims_fields)
-            # clientData.pop("client_secret")
-            token = create_access_token(identity=args['client_key'], user_claims=clientData)
-            return {'token': token}, 200
-        else:
-            return {'status': 'UNAUTHORIZED', 'message': 'invalid key or secret'}, 401
+            #############1......... hardcode
+            if hash == clientData.client_secret :
+                clientData = marshal(clientData, Clients.jwt_claims_fields)
+                # clientData.pop("client_secret")
+                clientData['identifier'] = "altabatch5"
+                clientData['internal'] = False
+                token = create_access_token(identity=args['client_key'], user_claims=clientData)
+                return {'token': token}, 200
+            elif args['client_key'] == app.config['INTERNAL_USER'] and args['client_secret'] == app.config['INTERNAL_PASS']:
+                clientData['internal'] = True
+                token = create_access_token(identity=args['client_key'], user_claims=clientData)
+            else:
+                return {'status': 'UNAUTHORIZED', 'message': 'invalid key or secret'}, 401
+
+            #####2 dari DB
+            if hash == clientData.client_secret:
+                clientData = marshal(clientData, Clients.jwt_claims_fields)
+                # clientData.pop("client_secret")
+                # tambahkan internal di jwt_claims_fields
+                clientData['identifier'] = "altabatch5"
+                token = create_access_token(
+                    identity=args['client_key'], user_claims=clientData)
+                return {'token': token}, 200
+            else:
+                return {'status': 'UNAUTHORIZED', 'message': 'invalid key or secret'}, 401
 
         # if args['client_key'] == 'altarest' and args['client_secret'] == '1OopwAPk3Q2D':
         #     token = create_access_token(identity=args['client_key'])

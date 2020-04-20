@@ -21,7 +21,7 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
 
 jwt = JWTManager(app)
 
-# jwt custom decorator
+# jwt custom decorator | PILIH SALAH SATU DENGAN user-claim di AUTH
 # @jwt.user_claims_loader
 # def add_claims_to_access_token(identity):
 #     return {
@@ -34,7 +34,7 @@ def internal_required(fn):
     def wrapper(*args, **kwargs):
         verify_jwt_in_request()
         claims = get_jwt_claims()
-        if not claims['status']:
+        if not claims['internal']:
             return {'status': 'FORBIDDEN', 'message': 'Internal Only!'}, 403
         else:
             return fn(*args, **kwargs)
@@ -44,7 +44,7 @@ def internal_required(fn):
 # Database
 ####################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/rest_training'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:masukaja@0.0.0.0:3306/restbatch5'
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
